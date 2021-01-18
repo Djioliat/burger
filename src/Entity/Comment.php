@@ -27,6 +27,23 @@ class Comment
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $pseudo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Articles::class, inversedBy="commentaire")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $articles;
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +69,42 @@ class Comment
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getArticles(): ?Articles
+    {
+        return $this->articles;
+    }
+
+    public function setArticles(?Articles $articles): self
+    {
+        $this->articles = $articles;
 
         return $this;
     }
